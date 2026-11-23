@@ -171,6 +171,11 @@ h1 {
   .h-break { display: none; }
 }
 
+@media (max-width: 640px) {
+  h1 { font-size: 1.42rem; }
+  .hero-message p span { display: inline; }
+}
+
 .hero-message p {
   margin: 0 0 0.9em;
   font-size: 1.02rem;
@@ -178,8 +183,11 @@ h1 {
   max-width: 36rem;
 }
 
+.hero-message p span { display: block; }
+
 .hero-lead {
   margin-top: 0.35em;
+  text-wrap: pretty;
 }
 
 .hero-row { margin-top: 8px; }
@@ -203,10 +211,10 @@ h1 {
 
 .tone {
   width: 100%;
-  height: 72vw;
-  max-height: 420px;
+  height: auto;
+  aspect-ratio: 16 / 9;
   object-fit: cover;
-  object-position: center 48%;
+  object-position: center center;
   filter: saturate(0.8) contrast(1.04);
   display: block;
 }
@@ -263,6 +271,13 @@ h2 {
   font-size: clamp(1.45rem, 2.4vw, 2.05rem);
 }
 
+.essay p span { display: block; }
+
+.essay h3 {
+  margin: 1.7em 0 0.7em;
+  font-size: 1.28rem;
+}
+
 .pull {
   margin: 1.7em 0 1.5em;
   padding: 0;
@@ -271,7 +286,9 @@ h2 {
   line-height: 1.9;
 }
 
-.pull span {
+.pull span { display: block; }
+
+.pull span:first-child {
   background-image: linear-gradient(rgba(47, 157, 91, 0.34), rgba(47, 157, 91, 0.34));
   background-repeat: no-repeat;
   background-size: 100% 0.42em;
@@ -725,13 +742,6 @@ textarea:focus { border-bottom-width: 2px; }
     padding: 16px 0 14px;
   }
 
-  .hero-row {
-    display: grid;
-    grid-template-columns: minmax(280px, 0.9fr) 1.1fr;
-    gap: 40px;
-    align-items: start;
-  }
-
   .hero-figure {
     display: grid;
     grid-template-columns: 1fr auto;
@@ -739,7 +749,7 @@ textarea:focus { border-bottom-width: 2px; }
     align-items: stretch;
   }
 
-  .tone { height: 420px; }
+  .tone { height: auto; }
 
   .vcap {
     writing-mode: vertical-rl;
@@ -795,6 +805,15 @@ textarea:focus { border-bottom-width: 2px; }
   .order-grid {
     grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
     gap: 64px;
+    align-items: start;
+  }
+}
+
+@media (min-width: 1080px) {
+  .hero-row {
+    display: grid;
+    grid-template-columns: minmax(380px, 1.35fr) minmax(260px, 0.75fr);
+    gap: 48px;
     align-items: start;
   }
 }
