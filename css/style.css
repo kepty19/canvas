@@ -160,9 +160,9 @@ button, input, select, textarea { font: inherit; color: inherit; }
 .opening { padding: 28px 0 56px; }
 
 h1 {
-  margin: 0 0 0.55em;
-  font-size: clamp(1.85rem, 5.4vw, 4.35rem);
-  line-height: 1.22;
+  margin: 0 0 0.7em;
+  font-size: clamp(1.55rem, 2.5vw, 2.15rem);
+  line-height: 1.45;
   letter-spacing: 0.01em;
   font-weight: 500;
 }
@@ -171,21 +171,18 @@ h1 {
   .h-break { display: none; }
 }
 
+.hero-message p {
+  margin: 0 0 0.9em;
+  font-size: 1.02rem;
+  line-height: 1.9;
+  max-width: 36rem;
+}
+
 .hero-lead {
-  font-size: 1.05rem;
-  max-width: 38rem;
+  margin-top: 0.35em;
 }
 
-.linkrow {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 4px 26px;
-  margin: 4px 0 0;
-}
-
-.linkrow a { text-underline-offset: 0.28em; }
-
-.hero-row { margin-top: 28px; }
+.hero-row { margin-top: 8px; }
 
 .hero-figure { margin: 0; }
 
@@ -209,7 +206,7 @@ h1 {
   height: 72vw;
   max-height: 420px;
   object-fit: cover;
-  object-position: center 42%;
+  object-position: center 48%;
   filter: saturate(0.8) contrast(1.04);
   display: block;
 }
@@ -732,7 +729,7 @@ textarea:focus { border-bottom-width: 2px; }
     display: grid;
     grid-template-columns: minmax(280px, 0.9fr) 1.1fr;
     gap: 40px;
-    align-items: center;
+    align-items: start;
   }
 
   .hero-figure {
@@ -1068,8 +1065,6 @@ caption,
   border-radius: 2px;
   transform: rotate(12deg);
 }
-
-.linkrow a { text-decoration-color: var(--green); }
 
 .submit {
   background: var(--green-deep);
