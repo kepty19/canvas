@@ -808,7 +808,6 @@ textarea:focus { border-bottom-width: 2px; }
 .paint {
   position: relative;
   display: inline-block;
-  padding-bottom: 0.16em;
 }
 
 .paint::before {
@@ -817,26 +816,12 @@ textarea:focus { border-bottom-width: 2px; }
   z-index: -1;
   left: -0.12em;
   right: -0.18em;
-  bottom: 0.18em;
+  bottom: 0.02em;
   height: 0.42em;
   background: var(--green);
   opacity: 0.38;
   border-radius: 46% 54% 48% 52% / 62% 38% 62% 38%;
   transform: rotate(-1.6deg);
-}
-
-.paint::after {
-  content: "";
-  position: absolute;
-  z-index: -1;
-  left: -0.04em;
-  right: 0.08em;
-  bottom: 0.02em;
-  height: 3px;
-  background: var(--coral);
-  border-radius: 3px;
-  transform: rotate(-1.2deg);
-  opacity: 0.95;
 }
 
 .proof { overflow: visible; }
@@ -936,11 +921,19 @@ caption,
 
 .pull {
   border-left: 0;
-  padding: 0.15em 0 0.15em 0.85em;
-  background-image: linear-gradient(var(--coral), var(--coral));
-  background-repeat: no-repeat;
-  background-size: 3px 100%;
-  background-position: left center;
+  padding: 0;
+}
+
+.pull::after {
+  content: "";
+  display: block;
+  width: 4.2rem;
+  height: 0.48rem;
+  margin-top: 0.75rem;
+  background: var(--green);
+  border-radius: 40% 60% 50% 50%;
+  transform: rotate(-3deg);
+  opacity: 0.9;
 }
 
 .price-num {
