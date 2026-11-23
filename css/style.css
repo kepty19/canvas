@@ -464,6 +464,8 @@ tbody tr:hover { background: rgba(92, 69, 36, 0.04); }
 
 .measures li::marker { color: var(--brass-ink); }
 
+.measures li:nth-child(odd)::marker { color: var(--coral); }
+
 .data { margin: 8px 0 0; }
 
 .data > div {
@@ -908,9 +910,89 @@ caption,
 }
 
 .works h2::before,
-.order h2::before {
+.order h2::before,
+.price-block h2::before,
+.standard-grid h2::before,
+.faq h2::before {
   background: var(--coral);
   transform: rotate(2.5deg);
+}
+
+.splatter {
+  position: relative;
+  height: 18px;
+  margin: 2px 0 16px;
+  pointer-events: none;
+}
+
+.splatter::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 7px;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--coral);
+  box-shadow: 14px -4px 0 -1px var(--coral), 27px 3px 0 -2px var(--coral);
+}
+
+.splatter::after {
+  content: "";
+  position: absolute;
+  left: 46px;
+  top: 9px;
+  width: 3.4rem;
+  height: 3px;
+  border-radius: 3px;
+  background: var(--coral);
+  transform: rotate(-8deg);
+}
+
+.splatter.dots::after { content: none; }
+
+.splatter.dots::before {
+  box-shadow:
+    15px 2px 0 -1px var(--coral),
+    29px -4px 0 -2px var(--coral),
+    42px 3px 0 0 var(--coral);
+}
+
+.splatter.line::before { content: none; }
+
+.splatter.line::after {
+  left: 0;
+  width: 5.4rem;
+  transform: rotate(-4deg);
+}
+
+.splatter.end {
+  width: 7.5rem;
+  margin-left: auto;
+}
+
+.splatter.on-dark::before,
+.splatter.on-dark::after {
+  background: #ff9b86;
+}
+
+.splatter.on-dark::before {
+  box-shadow: 14px -4px 0 -1px #ff9b86, 27px 3px 0 -2px #ff9b86;
+}
+
+.ink { position: relative; }
+
+.ink::after {
+  content: "";
+  position: absolute;
+  right: max(24px, 8vw);
+  top: 42px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #ff8f78;
+  box-shadow: -18px 7px 0 -2px #ff8f78, -34px -3px 0 -1px #ff8f78;
+  pointer-events: none;
 }
 
 .frame-brass {
