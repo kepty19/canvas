@@ -55,7 +55,7 @@
 
     alertBox.hidden = true;
     var body = [
-      "ONZEへの依頼",
+      "Kepty Printへの依頼",
       "",
       "お名前: " + name,
       "メール: " + email,
@@ -72,7 +72,7 @@
     if (copyBtn) copyBtn.textContent = "文面をコピーする";
 
     window.location.href = "mailto:" + EMAIL
-      + "?subject=" + encodeURIComponent("ONZEへの依頼（" + plan + "）")
+      + "?subject=" + encodeURIComponent("Kepty Printへの依頼（" + plan + "）")
       + "&body=" + encodeURIComponent(body);
     draftText.focus();
   });
