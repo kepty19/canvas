@@ -261,7 +261,6 @@ h1 {
 
 .sheet { padding: 72px 0; }
 
-#thought,
 #standard,
 #flow,
 #faq { border-top: 1px solid var(--line); }
@@ -947,7 +946,8 @@ caption,
   opacity: 0.9;
 }
 
-.ink h2::before {
+.ink h2::before,
+.ink .essay h2::before {
   content: "";
   display: block;
   width: 4.2rem;
@@ -956,6 +956,10 @@ caption,
   background: #7dcea0;
   border-radius: 46% 54% 40% 60%;
   transform: rotate(-2deg);
+}
+
+.ink .pull span:first-child {
+  background-image: linear-gradient(rgba(125, 206, 160, 0.55), rgba(125, 206, 160, 0.55));
 }
 
 .works h2::before,
