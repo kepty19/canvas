@@ -279,11 +279,20 @@ h2 {
 }
 
 .pull {
-  margin: 1.6em 0 1.4em;
-  padding: 0 0 0 0.9em;
-  border-left: 1px solid var(--brass-line);
-  font-size: 1.28rem;
-  line-height: 1.75;
+  margin: 1.7em 0 1.5em;
+  padding: 0;
+  border: 0;
+  font-size: 1.32rem;
+  line-height: 1.9;
+}
+
+.pull span {
+  background-image: linear-gradient(rgba(47, 157, 91, 0.34), rgba(47, 157, 91, 0.34));
+  background-repeat: no-repeat;
+  background-size: 100% 0.42em;
+  background-position: 0 0.92em;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
 }
 
 .ink {
@@ -308,7 +317,6 @@ h2 {
 }
 
 .ages h3,
-.refuse h3,
 .steps h3,
 .plan h3,
 .draft h3 {
@@ -316,14 +324,6 @@ h2 {
   font-size: 1.12rem;
   font-weight: 500;
 }
-
-.refuse {
-  margin-top: 8px;
-  border-top: 1px solid rgba(235, 230, 220, 0.28);
-  padding-top: 18px;
-}
-
-.refuse p:last-child { margin-bottom: 0; }
 
 .works { padding: 72px 0 20px; }
 
@@ -368,7 +368,7 @@ h2 {
 .frame-object,
 .canvas-object { margin: 0; }
 
-.frame-object { width: min(100%, 280px); }
+.frame-object { width: 100%; }
 
 .frame-brass {
   background: #6e5733;
@@ -395,7 +395,7 @@ h2 {
 .canvas-plate { margin: 0; }
 
 .canvas-object {
-  width: min(100%, 460px);
+  width: 100%;
   background-color: #2a241e;
   background-image: repeating-linear-gradient(
     100deg,
@@ -409,7 +409,7 @@ h2 {
 
 .frame-object figcaption,
 .canvas-plate figcaption {
-  margin-top: 8px;
+  margin-top: 16px;
   font-size: 0.78rem;
   letter-spacing: 0.06em;
   color: var(--muted);
@@ -734,10 +734,7 @@ textarea:focus { border-bottom-width: 2px; }
   .ch-label span + span { margin: 4px 0 0; }
 
   .ink-grid {
-    display: grid;
-    grid-template-columns: minmax(0, 1.45fr) minmax(220px, 0.7fr);
-    gap: 48px;
-    align-items: start;
+    max-width: 46rem;
   }
 
   .ages li {
@@ -749,24 +746,27 @@ textarea:focus { border-bottom-width: 2px; }
 
   .ages h3 { margin: 0; }
 
-  .refuse {
-    position: sticky;
-    top: 108px;
-    margin-top: 0;
-  }
-
   .plans {
-    grid-template-columns: 0.9fr 1fr;
-    gap: 72px;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
     align-items: start;
   }
 
-  #canvas {
-    justify-self: end;
-    width: min(100%, 460px);
+  .frame-brass,
+  .canvas-object {
+    aspect-ratio: 4 / 5;
   }
 
-  .canvas-object { width: 100%; }
+  .mat,
+  .canvas-object {
+    height: 100%;
+  }
+
+  .mat img,
+  .canvas-object img {
+    height: 100%;
+    aspect-ratio: auto;
+  }
 
   .standard-grid,
   .order-grid {
@@ -917,23 +917,6 @@ caption,
   background: #7dcea0;
   border-radius: 46% 54% 40% 60%;
   transform: rotate(-2deg);
-}
-
-.pull {
-  border-left: 0;
-  padding: 0;
-}
-
-.pull::after {
-  content: "";
-  display: block;
-  width: 4.2rem;
-  height: 0.48rem;
-  margin-top: 0.75rem;
-  background: var(--green);
-  border-radius: 40% 60% 50% 50%;
-  transform: rotate(-3deg);
-  opacity: 0.9;
 }
 
 .price-num {
