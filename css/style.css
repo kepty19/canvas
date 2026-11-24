@@ -287,15 +287,6 @@ h2 {
 
 .pull span { display: block; }
 
-.pull span:first-child {
-  background-image: linear-gradient(rgba(47, 157, 91, 0.34), rgba(47, 157, 91, 0.34));
-  background-repeat: no-repeat;
-  background-size: 100% 0.42em;
-  background-position: 0 0.92em;
-  box-decoration-break: clone;
-  -webkit-box-decoration-break: clone;
-}
-
 .ink {
   background: var(--pitch);
   color: var(--ivory);
@@ -360,6 +351,16 @@ h2 {
   margin-left: 4px;
   font-size: 0.95rem;
   letter-spacing: 0.12em;
+}
+
+.price-tax,
+.price-range {
+  display: inline-block;
+  margin-left: 0.55em;
+  font-size: 0.92rem;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+  vertical-align: 0.85em;
 }
 
 .price-to {
@@ -759,7 +760,7 @@ textarea:focus { border-bottom-width: 2px; }
 
   .spec-list {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     column-gap: 28px;
   }
 
@@ -958,9 +959,6 @@ caption,
   transform: rotate(-2deg);
 }
 
-.ink .pull span:first-child {
-  background-image: linear-gradient(rgba(125, 206, 160, 0.55), rgba(125, 206, 160, 0.55));
-}
 
 .works h2::before,
 .order h2::before,
