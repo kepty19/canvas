@@ -382,7 +382,7 @@ h2 {
 }
 
 .price-num.range {
-  font-size: 1.7rem;
+  font-weight: 600;
 }
 
 .price-range-strong .price-unit {
