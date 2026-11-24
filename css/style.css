@@ -334,33 +334,37 @@ h2 {
 }
 
 .price {
-  margin: 10px 0 0;
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0.2rem 0.75rem;
+  margin: 10px 0 18px;
   line-height: 1;
 }
+
+.price-main { white-space: nowrap; }
 
 .price-num {
   font-family: var(--latin);
   font-weight: 500;
-  font-size: clamp(2.5rem, 4vw, 3.4rem);
-  letter-spacing: 0.02em;
+  font-size: clamp(2.35rem, 3.2vw, 3rem);
+  letter-spacing: -0.02em;
   color: var(--ink);
   background: none;
 }
 
 .price-unit {
-  margin-left: 4px;
-  font-size: 0.95rem;
-  letter-spacing: 0.12em;
+  margin-left: 0.08em;
+  font-size: 1.05rem;
+  letter-spacing: 0.06em;
 }
 
 .price-tax,
 .price-range {
-  display: inline-block;
-  margin-left: 0.55em;
-  font-size: 0.92rem;
-  letter-spacing: 0.04em;
+  font-size: 0.98rem;
+  letter-spacing: 0.02em;
   color: var(--muted);
-  vertical-align: 0.85em;
+  white-space: nowrap;
 }
 
 .price-to {
@@ -703,11 +707,22 @@ textarea:focus { border-bottom-width: 2px; }
 }
 
 .colophon .mark-en {
-  font-size: clamp(2.4rem, 6vw, 3.6rem);
-  margin-bottom: 18px;
+  font-size: clamp(1.7rem, 3vw, 2.2rem);
+  margin: 0 0 14px;
 }
 
-.colophon p { max-width: 36rem; }
+.colophon-lead {
+  margin: 0 0 28px;
+  max-width: 34rem;
+  font-size: 0.98rem;
+  line-height: 1.9;
+}
+
+.colophon .copy {
+  margin: 0;
+  padding-top: 18px;
+  border-top: 1px solid rgba(235, 230, 220, 0.28);
+}
 
 .colophon a { text-underline-offset: 0.22em; }
 
@@ -842,17 +857,7 @@ textarea:focus { border-bottom-width: 2px; }
   box-shadow: 16px -5px 0 -1px var(--coral), 31px 3px 0 -2px var(--coral);
 }
 
-.ink-scatter::after {
-  content: "";
-  position: absolute;
-  left: 52px;
-  top: 11px;
-  width: 4.6rem;
-  height: 3px;
-  border-radius: 3px;
-  background: var(--coral);
-  transform: rotate(-7deg);
-}
+.ink-scatter::after { content: none; }
 
 .paint {
   background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 640 90' preserveAspectRatio='none'><path fill='%23e36a4f' fill-opacity='.45' d='M22 62c30-24 74 14 122-8 48-20 80 16 132 0 54-16 88 18 144 2 50-14 80 14 118 0 16-6 36 6 52-4-2 16-22 26-46 28-48 6-94-12-146 6-50 16-92-14-140 4-54 18-98-8-148 10-40 14-68 2-92-8 6-12 16-22 32-30z'/><path fill='%232f9d5b' fill-opacity='.48' d='M8 46c26-28 68 16 116-10 52-28 86 20 140-2 56-22 92 16 150-2 52-16 86 16 130 0 18-6 40 8 54-2-6 18-24 30-50 32-48 4-96-16-148 8-50 20-94-14-142 6-54 20-100-8-150 10-42 14-70 0-96-12 8-16 14-26 28-34z'/></svg>");
@@ -988,25 +993,10 @@ caption,
   box-shadow: 14px -4px 0 -1px var(--coral), 27px 3px 0 -2px var(--coral);
 }
 
-.splatter::after {
-  content: "";
-  position: absolute;
-  left: 46px;
-  top: 9px;
-  width: 3.4rem;
-  height: 3px;
-  border-radius: 3px;
-  background: var(--coral);
-  transform: rotate(-8deg);
-}
-
-.splatter.dots::after { content: none; }
+.splatter::after { content: none; }
 
 .splatter.dots::before {
-  box-shadow:
-    15px 2px 0 -1px var(--coral),
-    29px -4px 0 -2px var(--coral),
-    42px 3px 0 0 var(--coral);
+  box-shadow: 14px -4px 0 -1px var(--coral), 27px 3px 0 -2px var(--coral);
 }
 
 .splatter.line::before { content: none; }
