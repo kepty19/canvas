@@ -1,12 +1,12 @@
 (function () {
-  var EMAIL = "order@onze-atelier.jp";
+  var ENDPOINT = "https://formsubmit.co/ajax/contact@kepty.co";
   var form = document.getElementById("order-form");
   if (!form) return;
 
   var alertBox = document.getElementById("form-alert");
-  var draft = document.getElementById("draft");
-  var draftText = document.getElementById("draft-text");
-  var copyBtn = document.getElementById("copy-draft");
+  var done = document.getElementById("order-done");
+  var submitBtn = form.querySelector(".submit");
+  var sending = false;
 
   function valueOf(name) {
     var field = form.elements[name];
@@ -20,77 +20,100 @@
     else field.removeAttribute("aria-invalid");
   }
 
+  function validEmail(email) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  }
+
+  function validPhone(phone) {
+    var digits = phone.replace(/\D/g, "");
+    if (digits.indexOf("81") === 0 && digits.length > 2) digits = "0" + digits.slice(2);
+    return /^0\d{9,10}$/.test(digits);
+  }
+
+  function showErrors(errors) {
+    alertBox.replaceChildren();
+    errors.forEach(function (message) {
+      var p = document.createElement("p");
+      p.textContent = message;
+      alertBox.appendChild(p);
+    });
+    alertBox.hidden = false;
+    alertBox.focus();
+  }
+
   form.addEventListener("submit", function (event) {
     event.preventDefault();
-    if (valueOf("company")) return;
+    if (sending) return;
+    if (valueOf("_honey")) return;
 
-    var name = valueOf("name");
+    var name = valueOf("お名前");
     var email = valueOf("email");
-    var age = valueOf("age");
-    var plan = valueOf("plan");
+    var tel = valueOf("電話番号");
+    var plan = valueOf("希望商品");
+    var size = valueOf("サイズ");
     var errors = [];
 
-    invalidate("name", !name);
-    invalidate("email", !email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email));
-    invalidate("age", !age);
-    invalidate("plan", !plan);
+    invalidate("お名前", !name);
+    invalidate("email", !email || !validEmail(email));
+    invalidate("電話番号", !tel || !validPhone(tel));
+    invalidate("希望商品", !plan);
+    invalidate("サイズ", !size);
 
     if (!name) errors.push("お名前を書いてください。");
     if (!email) errors.push("メールアドレスを書いてください。");
-    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) errors.push("メールアドレスの形を確認してください。");
-    if (!age) errors.push("選手の年代を選んでください。");
-    if (!plan) errors.push("写真立てか、キャンバスか、まだ決めていないかを選んでください。");
+    else if (!validEmail(email)) errors.push("メールアドレスの形を確認してください。");
+    if (!tel) errors.push("電話番号を書いてください。");
+    else if (!validPhone(tel)) errors.push("電話番号の形を確認してください。");
+    if (!plan) errors.push("希望商品を選んでください。");
+    if (!size) errors.push("サイズを選んでください。");
 
-    alertBox.replaceChildren();
     if (errors.length) {
-      errors.forEach(function (message) {
-        var p = document.createElement("p");
-        p.textContent = message;
-        alertBox.appendChild(p);
-      });
-      alertBox.hidden = false;
-      alertBox.focus();
+      showErrors(errors);
       return;
     }
 
     alertBox.hidden = true;
-    var body = [
-      "Kepty Proへの依頼",
-      "",
-      "お名前: " + name,
-      "メール: " + email,
-      "選手の年代: " + age,
-      "希望: " + plan,
-      "サイズ: " + (valueOf("size") || "未定"),
-      "置く場所: " + (valueOf("place") || "未定"),
-      "",
-      valueOf("message") || "（本文なし）"
-    ].join("\n");
+    sending = true;
+    submitBtn.disabled = true;
+    submitBtn.textContent = "送信しています";
 
-    draft.hidden = false;
-    draftText.value = body;
-    if (copyBtn) copyBtn.textContent = "文面をコピーする";
+    var payload = {
+      _subject: "Kepty Proへのお申し込み（" + plan + "）",
+      _template: "table",
+      _captcha: "false",
+      _replyto: email,
+      email: email,
+      お名前: name,
+      メールアドレス: email,
+      電話番号: tel,
+      希望商品: plan,
+      サイズ: size,
+      相談内容: valueOf("相談内容") || "（なし）"
+    };
 
-    window.location.href = "mailto:" + EMAIL
-      + "?subject=" + encodeURIComponent("Kepty Proへの依頼（" + plan + "）")
-      + "&body=" + encodeURIComponent(body);
-    draftText.focus();
-  });
-
-  if (copyBtn) {
-    copyBtn.addEventListener("click", function () {
-      var text = draftText.value;
-      if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(text).then(function () {
-          copyBtn.textContent = "コピーしました";
-        }, function () {
-          draftText.select();
-          copyBtn.textContent = "文面を選択しました";
-        });
-      } else {
-        draftText.select();
-        copyBtn.textContent = "文面を選択しました";
-      }
+    fetch(ENDPOINT, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json"
+      },
+      body: JSON.stringify(payload)
+    }).then(function (response) {
+      return response.text().then(function (text) {
+        var data = {};
+        try { data = JSON.parse(text); } catch (error) { data = {}; }
+        if (!response.ok || String(data.success) !== "true") {
+          throw new Error(data.message || "rejected");
+        }
+        form.hidden = true;
+        done.hidden = false;
+        done.focus();
+      });
+    }).catch(function () {
+      sending = false;
+      submitBtn.disabled = false;
+      submitBtn.textContent = "送信する";
+      showErrors(["送信できませんでした。しばらくしてから、もう一度お試しください。"]);
     });
-  }
+  });
 })();

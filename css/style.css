@@ -692,6 +692,29 @@ textarea:focus { border-bottom-width: 2px; }
 
 .alert p { margin: 0 0 0.25em; }
 
+.order h2,
+.order form,
+.order-done {
+  max-width: 40rem;
+}
+
+.order-done p {
+  margin: 0 0 0.85em;
+}
+
+.order-done p:first-child {
+  font-size: 1.28rem;
+}
+
+.order-done p:last-child {
+  margin-top: 1.15em;
+}
+
+.submit:disabled {
+  cursor: wait;
+  opacity: 0.65;
+}
+
 .form-actions {
   display: flex;
   flex-wrap: wrap;
