@@ -589,11 +589,18 @@ tbody tr:hover { background: rgba(92, 69, 36, 0.04); }
   box-shadow: 3px 3px 0 var(--coral);
 }
 
-.steps li:nth-child(even) h3::before {
+.steps li:nth-child(2) h3::before {
   color: #8d3a2c;
   background: rgba(227, 106, 79, 0.34);
   transform: rotate(6deg);
   box-shadow: 3px 3px 0 var(--green);
+}
+
+.steps li:nth-child(3) h3::before {
+  color: #1a4a68;
+  background: rgba(61, 124, 168, 0.32);
+  transform: rotate(-3deg);
+  box-shadow: 3px 3px 0 #c9a24a;
 }
 
 .faq details {
